@@ -12,4 +12,8 @@ export default {};
 
 <style lang="scss">
 @import 'sass/global';
+.main {
+    text-align: center;
+    padding: 5vh 5vw;
+}
 </style>
