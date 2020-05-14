@@ -1,13 +1,13 @@
 <template>
-    <div class="word-display">
+    <div class="queries">
         <h1>Word Randomiser</h1>
         <v-button>Randomise!</v-button>
-        <section>
+        <section class="word-display">
+            <word-span :text="'shkhfksdhfkshd'" />
             <word-span :text="'Word'" />
-            <word-span :text="'Word'" />
-            <word-span :text="'Word'" />
-            <word-span :text="'Word'" />
-            <word-span :text="'Word'" />
+            <word-span :text="'adfs'" />
+            <word-span :text="'dhkjfskjdhfkjshdf'" />
+            <word-span :text="'sjflsdjf sdjfksd'" />
             <word-span :text="'Word'" />
             <word-span :text="'Word'" />
             <word-span :text="'Word'" />
@@ -31,8 +31,12 @@ export default {
 
 
 <style scoped lang="scss">
-.word-display {
+.queries {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.word-display {
+    margin-top: 5vh;
 }
 </style>
