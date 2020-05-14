@@ -15,7 +15,13 @@
 </template>
 
 <script>
-export default {};
+import Button from '@/components/Button.vue';
+export default {
+    name: 'Filters',
+    components: {
+        'v-button': Button
+    }
+};
 </script>
 
 <style lang="scss" scoped>
