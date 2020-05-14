@@ -1,5 +1,9 @@
 <template>
     <section class="word-display">
+        <v-button :class="'button--large'" @click.native="getRandomWords()">
+            <div v-show="!words">Randomise!</div>
+            <div v-show="words">Randomise Again!</div>
+        </v-button>
         <div v-if="words">
             <span v-for="(word, index) in words" :key="index">
                 <word-span :text="word" />
@@ -15,22 +19,23 @@
 </template>
 
 <script>
-import WordSpan from '../WordSpan.vue';
+import Button from '@/components/ui/Button.vue';
+import WordSpan from '@/components/ui/WordSpan.vue';
 export default {
     name: 'Words',
     components: {
-        'word-span': WordSpan
+        'word-span': WordSpan,
+        'v-button': Button
     },
     data() {
         return {
-            words: ''
+            words: '',
+            loading: false
         };
-    },
-    mounted() {
-        this.getRandomWords(10);
     },
     methods: {
         async getRandomWords(wordAmount = 10) {
+            this.loading = true;
             try {
                 const url = `https://random-word-api.herokuapp.com/word?number=${wordAmount}`;
                 const res = await fetch(url);
@@ -40,6 +45,7 @@ export default {
                 console.error('getRandomWords has failed!');
                 console.error(error.response.status);
             }
+            this.loading = false;
         }
     }
 };
@@ -47,6 +53,7 @@ export default {
 
 <style scoped>
 .word-display span {
+    margin-top: 2rem;
     font-size: 0.8rem;
 }
 </style>
