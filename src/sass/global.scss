@@ -328,6 +328,7 @@ menu li {
     margin: 0;
     padding: 0;
 }
+
 /* Core UI components */
 .spinner {
     -webkit-animation: spin 1.3s infinite linear;
@@ -390,7 +391,8 @@ menu li {
     outline: none;
 }
 .button--primary,
-.button--primary:visited {
+.button--primary:visited,
+.button--secondary.active {
     background: var(--ui-color--cta);
     border: 2px solid var(--ui-color--cta);
     color: white;

@@ -1,6 +1,6 @@
 <template>
     <div class="queries">
-        <v-button>Randomise!</v-button>
+        <v-button :class="'button--large'">Randomise!</v-button>
         <section class="word-display">
             <word-span :text="'shkhfksdhfkshd'" />
             <word-span :text="'Word'" />
@@ -17,15 +17,14 @@
             <aside>
                 <div class="control sort">
                     <h3>Sort</h3>
-                    <word-span :text="'ASC'"></word-span>
-                    <word-span :text="'DESC'"></word-span>
+                    <v-button :class="'button button--secondary'">Type</v-button>
+                    <v-button :class="'button button--secondary'">Definition</v-button>
                 </div>
                 <div class="control filters">
                     <h3>Filter</h3>
-                    <word-span :text="'Type'"></word-span>
-                    <word-span :text="'Emoji'"></word-span>
-                    <word-span :text="'Image'"></word-span>
-                    <word-span :text="'Pronunciation'"></word-span>
+                    <v-button :class="'button button--secondary'">Type</v-button>
+                    <v-button :class="'button button--secondary'">Definition</v-button>
+                    <v-button :class="'button button--secondary'">Example</v-button>
                 </div>
             </aside>
             <section class="definition">
@@ -40,12 +39,12 @@
                         <p>a recess or piece of furniture with a door and usually shelves, used for storage.</p>
                         <span>"a broom cupboard"</span>
                     </header>
-                    <aside>
+                    <figure>
                         <img
                             src="https://media.owlbot.info/dictionary/images/aan.jpg.400x400_q85_box-0,0,225,225_crop_detail.jpg"
                             alt="word"
                         />
-                    </aside>
+                    </figure>
                 </article>
                 <article>
                     <header>
@@ -53,12 +52,12 @@
                         <p>a recess or piece of furniture with a door and usually shelves, used for storage.</p>
                         <span>"a broom cupboard"</span>
                     </header>
-                    <aside>
+                    <figure>
                         <img
                             src="https://media.owlbot.info/dictionary/images/aan.jpg.400x400_q85_box-0,0,225,225_crop_detail.jpg"
                             alt="word"
                         />
-                    </aside>
+                    </figure>
                 </article>
                 <article>
                     <header>
@@ -66,12 +65,12 @@
                         <p>a recess or piece of furniture with a door and usually shelves, used for storage.</p>
                         <span>"a broom cupboard"</span>
                     </header>
-                    <aside>
+                    <figure>
                         <img
                             src="https://media.owlbot.info/dictionary/images/aan.jpg.400x400_q85_box-0,0,225,225_crop_detail.jpg"
                             alt="word"
                         />
-                    </aside>
+                    </figure>
                 </article>
             </section>
         </section>
@@ -86,6 +85,9 @@ export default {
     components: {
         'v-button': Button,
         'word-span': WordSpan
+    },
+    props: {
+        class: String
     }
 };
 </script>
@@ -109,6 +111,9 @@ export default {
 
     aside {
         text-align: left;
+        .button {
+            margin: 0 5px;
+        }
         .control {
             margin-bottom: 20px;
             border: 1px solid var(--color-mono--200);
