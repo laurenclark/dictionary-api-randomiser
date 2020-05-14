@@ -2,13 +2,13 @@
     <div>
         <nav class="menu">
             <li>
-                <router-link to="/statisitcs">Statistics</router-link>
+                <router-link to="/stats">Stats</router-link>
             </li>
             <li>
                 <router-link to="/">Queries</router-link>
             </li>
             <li>
-                <router-link to="/statisitcs">History</router-link>
+                <router-link to="/history">History</router-link>
             </li>
         </nav>
     </div>
