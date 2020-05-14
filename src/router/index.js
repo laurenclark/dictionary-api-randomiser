@@ -1,14 +1,27 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import WordDisplay from '../views/WordDisplay.vue';
+
+import Queries from '../views/Queries.vue';
+import History from '../views/History.vue';
+import Statistics from '../views/Statistics.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: '/',
-        name: 'WordDisplay',
-        component: WordDisplay
+        name: 'Queries',
+        component: Queries
+    },
+    {
+        path: '/',
+        name: 'History',
+        component: History
+    },
+    {
+        path: '/',
+        name: 'Statistics',
+        component: Statistics
     }
 ];
 
