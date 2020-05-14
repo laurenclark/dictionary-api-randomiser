@@ -6,17 +6,19 @@
             <span>/ˈkəbərd/</span>
         </header>
         <article>
-            <header>
-                <em>noun</em>
-                <p>a recess or piece of furniture with a door and usually shelves, used for storage.</p>
-                <span>"a broom cupboard"</span>
-            </header>
-            <figure>
-                <img
-                    src="https://media.owlbot.info/dictionary/images/aan.jpg.400x400_q85_box-0,0,225,225_crop_detail.jpg"
-                    alt="word"
-                />
-            </figure>
+            <div class="definition__body">
+                <header>
+                    <em>noun</em>
+                    <p>a recess or piece of furniture with a door and usually shelves, used for storage.</p>
+                    <span>"a broom cupboard"</span>
+                </header>
+                <figure>
+                    <img
+                        src="https://media.owlbot.info/dictionary/images/aan.jpg.400x400_q85_box-0,0,225,225_crop_detail.jpg"
+                        alt="word"
+                    />
+                </figure>
+            </div>
         </article>
     </section>
 </template>
@@ -34,6 +36,14 @@ export default {
     text-align: left;
     padding: 10px;
     font-size: 1rem;
+    &__body {
+        & header {
+            border-bottom: none;
+        }
+        display: grid;
+        padding: 20px;
+        grid-template-columns: 4fr 1fr;
+    }
     &__header {
         h2 {
             margin-bottom: 0;
@@ -57,15 +67,6 @@ export default {
         max-width: 100%;
         border-radius: 55px;
         border: solid 1px #dedede;
-    }
-    article {
-        & header {
-            border-bottom: none;
-        }
-        display: grid;
-        padding: 20px;
-        grid-template-columns: 4fr 1fr;
-        border-bottom: 1px solid var(--color-mono--300);
     }
 }
 </style>
