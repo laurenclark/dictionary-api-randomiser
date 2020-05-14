@@ -1,6 +1,5 @@
 <template>
     <div class="queries">
-        <h1>Word Randomiser</h1>
         <v-button>Randomise!</v-button>
         <section class="word-display">
             <word-span :text="'shkhfksdhfkshd'" />
@@ -31,12 +30,8 @@ export default {
 
 
 <style scoped lang="scss">
+.word-display,
 .queries {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.word-display {
     margin-top: 5vh;
 }
 </style>
