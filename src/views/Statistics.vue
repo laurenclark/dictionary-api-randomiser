@@ -1,9 +1,11 @@
 <template>
-    <div></div>
+    <div>{{ $route.name }}</div>
 </template>
 
 <script>
-export default {};
+export default {
+    name: 'Stats'
+};
 </script>
 
 <style scoped>
