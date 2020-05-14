@@ -1,7 +1,8 @@
 <template>
     <section class="word-display">
         <v-button :class="'button--large'" @click.native="getRandomWords()">
-            <div v-show="!words">Randomise!</div>
+            <loading-spinner v-show="loading" title="Loading..." />
+            <div v-show="!words">Get Random Words</div>
             <div v-show="words">Randomise Again!</div>
         </v-button>
         <div v-if="words">
@@ -21,11 +22,13 @@
 <script>
 import Button from '@/components/ui/Button.vue';
 import WordSpan from '@/components/ui/WordSpan.vue';
+import Spinner from '@/components/ui/Spinner.vue';
 export default {
     name: 'Words',
     components: {
         'word-span': WordSpan,
-        'v-button': Button
+        'v-button': Button,
+        'loading-spinner': Spinner
     },
     data() {
         return {
