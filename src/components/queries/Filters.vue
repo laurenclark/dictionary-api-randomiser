@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Button from '@/components/Button.vue';
+import Button from '@/components/ui/Button.vue';
 export default {
     name: 'Filters',
     components: {
