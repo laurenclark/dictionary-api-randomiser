@@ -12,6 +12,7 @@
                     <word-span :text="word" @click.native="searchForWord(word)" />
                 </span>
             </div>
+
             <span v-else>
                 <p v-html="startMessage"></p>
             </span>
@@ -25,6 +26,16 @@ import Button from '@/components/ui/Button.vue';
 import WordSpan from '@/components/ui/WordSpan.vue';
 import Spinner from '@/components/ui/Spinner.vue';
 import Results from '@/components/queries/Results.vue';
+
+// TODO:
+// - Loop through defintion data to get
+//    * {definition}, {example}, {word}, {type}, {image}, {emoji} {pronunciation}
+// - Store these in their own objects with .map()
+// - Loop through them in the display
+// - Create dynamic sorting/filtering by utilising .sort() and .filter()
+// - Pass this down to results and results children to render, or add to store
+// - Persist search terms in localStorage
+// - OR set up a graphQL server with a mutation to store and cache them
 
 export default {
     name: 'Words',
@@ -40,7 +51,7 @@ export default {
             buttonLoading: false,
             resultsLoading: false,
             error: false,
-            definition: ''
+            definitionsData: {}
         };
     },
     computed: {
@@ -73,12 +84,12 @@ export default {
                 const url = `https://owlbot.info/api/v4/dictionary/${word}`;
                 const config = {
                     headers: {
-                        authorization: process.env.VUE_APP_OWL_API_KEY
+                        authorization: `Token ${process.env.VUE_APP_OWL_API_KEY}`
                     }
                 };
                 const res = await fetch(url, config);
                 const data = await res.json();
-                this.definition = data;
+                this.definitionsData = data;
                 alert(word);
             } catch (error) {
                 this.error = true;
