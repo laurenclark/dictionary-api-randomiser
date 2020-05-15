@@ -1,9 +1,9 @@
 <template>
     <div>
         <section class="word-display">
-            <p class="box box--red" v-if="error">:( Something went wrong. Try again.</p>
+            <p class="box box--red" v-if="error">{{errorMessage}}</p>
             <v-button :class="'button--large'" @click.native="getRandomWords(10)">
-                <loading-spinner v-show="loading" title="Loading..." />
+                <loading-spinner v-show="buttonLoading" title="Loading..." />
                 <div v-show="!words">Get Random Words</div>
                 <div v-show="words">Randomise Again!</div>
             </v-button>
@@ -13,10 +13,7 @@
                 </span>
             </div>
             <span v-else>
-                <p>
-                    Click the
-                    <b>Randomise</b> button to start!
-                </p>
+                <p v-html="startMessage"></p>
             </span>
         </section>
         <results />
@@ -46,21 +43,29 @@ export default {
             definition: ''
         };
     },
+    computed: {
+        errorMessage: function errorMessage() {
+            return `:( Something went wrong. Try again.`;
+        },
+        startMessage: function startMessage() {
+            return `Click the <b>Randomise</b> button to start!`;
+        }
+    },
     methods: {
         async getRandomWords(wordAmount = 10) {
             try {
-                this.loading = true;
+                this.buttonLoading = true;
                 const url = `https://random-word-api.herokuapp.com/word?number=${wordAmount}`;
                 const res = await fetch(url);
                 const data = await res.json();
                 this.words = data;
             } catch (error) {
-                this.loading = false;
+                this.buttonLoading = false;
                 this.error = true;
                 console.error(`getRandomWords has failed!`);
                 console.error(error.response.status);
             }
-            this.loading = false;
+            this.buttonLoading = false;
         },
 
         async searchForWord(word = 'Owl') {
