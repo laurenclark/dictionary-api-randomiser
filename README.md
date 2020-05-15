@@ -1,4 +1,17 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/33675f30-2cfc-462e-9ed7-475ca0b06ef8/deploy-status)](https://app.netlify.com/sites/dictionary-randomiser/deploys)
+
 # dictionary-api-randomiser
+
+This Vue project uses:
+- Vuex
+- Scss
+- Single File Components
+- Babel
+- Jest for Unit/Integration Tests
+- Cypress for E2E Testing
+- localStorage for persisting routes
+
+You will need to create a local .env file and get your own key from https://owlbot.info/
 
 ## Project setup
 ```
