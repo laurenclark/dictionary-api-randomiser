@@ -73,7 +73,7 @@ export default {
                 const url = `https://owlbot.info/api/v4/dictionary/${word}`;
                 const config = {
                     headers: {
-                        authorization: process.env.VUE_APP_OWL_API_KEY
+                        authorization: `Token ${process.env.VUE_APP_OWL_API_KEY}`
                     }
                 };
                 const res = await fetch(url, config);
