@@ -2,7 +2,9 @@
 
 # dictionary-api-randomiser
 
-This Vue project uses:
+View the app on Netlify https://dictionary-randomiser.netlify.app/
+
+This Vue app uses:
 - Vuex
 - Scss
 - Single File Components
