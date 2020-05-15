@@ -1,41 +1,49 @@
 <template>
-    <section class="word-display">
-        <p class="box box--red" v-if="error">:( Something went wrong. Try again.</p>
-        <v-button :class="'button--large'" @click.native="getRandomWords(20)">
-            <loading-spinner v-show="loading" title="Loading..." />
-            <div v-show="!words">Get Random Words</div>
-            <div v-show="words">Randomise Again!</div>
-        </v-button>
-        <div v-if="words">
-            <span v-for="(word, index) in words" :key="index">
-                <word-span :text="word" />
+    <div>
+        <section class="word-display">
+            <p class="box box--red" v-if="error">:( Something went wrong. Try again.</p>
+            <v-button :class="'button--large'" @click.native="getRandomWords(10)">
+                <loading-spinner v-show="loading" title="Loading..." />
+                <div v-show="!words">Get Random Words</div>
+                <div v-show="words">Randomise Again!</div>
+            </v-button>
+            <div v-if="words">
+                <span v-for="(word, index) in words" :key="index">
+                    <word-span :text="word" @click.native="searchForWord(word)" />
+                </span>
+            </div>
+            <span v-else>
+                <p>
+                    Click the
+                    <b>Randomise</b> button to start!
+                </p>
             </span>
-        </div>
-        <span v-else>
-            <p>
-                Click the
-                <b>Randomise</b> button to start!
-            </p>
-        </span>
-    </section>
+        </section>
+        <results />
+    </div>
 </template>
 
 <script>
 import Button from '@/components/ui/Button.vue';
 import WordSpan from '@/components/ui/WordSpan.vue';
 import Spinner from '@/components/ui/Spinner.vue';
+import Results from '@/components/queries/Results.vue';
+
 export default {
     name: 'Words',
     components: {
         'word-span': WordSpan,
         'v-button': Button,
-        'loading-spinner': Spinner
+        'loading-spinner': Spinner,
+        results: Results
     },
     data() {
         return {
             words: '',
-            loading: false,
-            error: false
+            buttonLoading: false,
+            resultsLoading: false,
+            error: false,
+            definition: ''
         };
     },
     methods: {
@@ -53,6 +61,25 @@ export default {
                 console.error(error.response.status);
             }
             this.loading = false;
+        },
+
+        async searchForWord(word = 'Owl') {
+            try {
+                const url = `https://owlbot.info/api/v4/dictionary/${word}`;
+                const config = {
+                    headers: {
+                        authorization:
+                            'Token 8b263eebe708880333c4f8762c822dfc4786a29f'
+                    }
+                };
+                const res = await fetch(url, config);
+                const data = await res.json();
+                this.definition = data;
+            } catch (error) {
+                this.error = true;
+                console.error(`searchForWord has failed!`);
+                console.error(error.response.status);
+            }
         }
     }
 };
