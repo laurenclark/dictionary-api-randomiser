@@ -68,18 +68,18 @@ export default {
             this.buttonLoading = false;
         },
 
-        async searchForWord(word = 'Owl') {
+        async searchForWord(word) {
             try {
                 const url = `https://owlbot.info/api/v4/dictionary/${word}`;
                 const config = {
                     headers: {
-                        authorization:
-                            'Token 8b263eebe708880333c4f8762c822dfc4786a29f'
+                        authorization: process.env.VUE_APP_OWL_API_KEY
                     }
                 };
                 const res = await fetch(url, config);
                 const data = await res.json();
                 this.definition = data;
+                alert(word);
             } catch (error) {
                 this.error = true;
                 console.error(`searchForWord has failed!`);
