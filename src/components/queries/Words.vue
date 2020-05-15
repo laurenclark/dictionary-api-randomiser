@@ -36,6 +36,7 @@ import Results from '@/components/queries/Results.vue';
 // - Pass this down to results and results children to render, or add to store
 // - Persist search terms in localStorage
 // - OR set up a graphQL server with a mutation to store and cache them
+// - Handle words not found if there is a 404 response, get {message} and display it
 
 export default {
     name: 'Words',
