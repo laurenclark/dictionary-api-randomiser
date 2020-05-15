@@ -18,6 +18,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+    name: 'Spinner',
+    props: {
+        text: { type: String }
+    }
+};
 </script>
 
