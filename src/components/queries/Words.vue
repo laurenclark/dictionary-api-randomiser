@@ -1,6 +1,7 @@
 <template>
     <section class="word-display">
-        <v-button :class="'button--large'" @click.native="getRandomWords()">
+        <p class="box box--red" v-if="error">:( Something went wrong. Try again.</p>
+        <v-button :class="'button--large'" @click.native="getRandomWords(20)">
             <loading-spinner v-show="loading" title="Loading..." />
             <div v-show="!words">Get Random Words</div>
             <div v-show="words">Randomise Again!</div>
@@ -33,19 +34,22 @@ export default {
     data() {
         return {
             words: '',
-            loading: false
+            loading: false,
+            error: false
         };
     },
     methods: {
         async getRandomWords(wordAmount = 10) {
-            this.loading = true;
             try {
+                this.loading = true;
                 const url = `https://random-word-api.herokuapp.com/word?number=${wordAmount}`;
                 const res = await fetch(url);
                 const data = await res.json();
                 this.words = data;
             } catch (error) {
-                console.error('getRandomWords has failed!');
+                this.loading = false;
+                this.error = true;
+                console.error(`getRandomWords has failed!`);
                 console.error(error.response.status);
             }
             this.loading = false;
@@ -56,7 +60,11 @@ export default {
 
 <style scoped>
 .word-display span {
-    margin-top: 2rem;
+    margin-top: 1rem;
     font-size: 0.8rem;
+}
+
+.button--large {
+    margin-bottom: 1em;
 }
 </style>
